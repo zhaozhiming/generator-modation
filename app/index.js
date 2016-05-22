@@ -15,16 +15,8 @@ module.exports = generators.Base.extend({
       this.destinationPath('configs/webpack.config.js')
     );
     this.fs.copy(
-      this.templatePath('src/server/README.md'),
-      this.destinationPath('src/server/README.md')
-    );
-    this.fs.copy(
-      this.templatePath('src/constants/actionTypes.js'),
-      this.destinationPath('src/constants/actionTypes.js')
-    );
-    this.fs.copy(
-      this.templatePath('src/utils/README.md'),
-      this.destinationPath('src/utils/README.md')
+      this.templatePath('src/**/*.*'),
+      this.destinationPath('src')
     );
   }
 });
