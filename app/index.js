@@ -22,5 +22,9 @@ module.exports = generators.Base.extend({
       this.templatePath('src/constants/actionTypes.js'),
       this.destinationPath('src/constants/actionTypes.js')
     );
+    this.fs.copy(
+      this.templatePath('src/utils/README.md'),
+      this.destinationPath('src/utils/README.md')
+    );
   }
 });
