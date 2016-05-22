@@ -1,5 +1,4 @@
 const generators = require('yeoman-generator');
-const mkdirp = require('mkdirp');
 
 module.exports = generators.Base.extend({
   constructor: function () {
@@ -7,12 +6,18 @@ module.exports = generators.Base.extend({
   },
 
   writing: function() {
-    mkdirp.sync('docs');
+    this.fs.copy(
+      this.templatePath('docs/README.md'),
+      this.destinationPath('docs/README.md')
+    );
     this.fs.copy(
       this.templatePath('configs/webpack.config.js'),
       this.destinationPath('configs/webpack.config.js')
     );
-    mkdirp.sync('src/server');
+    this.fs.copy(
+      this.templatePath('src/server/README.md'),
+      this.destinationPath('src/server/README.md')
+    );
     this.fs.copy(
       this.templatePath('src/constants/actionTypes.js'),
       this.destinationPath('src/constants/actionTypes.js')
