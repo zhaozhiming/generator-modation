@@ -6,3 +6,5 @@
 * 安装yeoman: `npm install -g yeoman`
 * 在要新建工程的目录中通过命令`yo modation`来创建工程
 * 在新工程目录执行命令`npm install`安装依赖包
+* 在新工程目录执行命令`npm start`启动服务，访问地址：`localhost:8000`
+

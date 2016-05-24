@@ -21,7 +21,7 @@ export default function configureStore(history, initialState = {}) {
 
   if (process.env.NODE_ENV === 'development') {
     if (module.hot) {
-      module.hot.accept('reducers', () => store.replaceReducer(require('reducers')));
+      module.hot.accept('reducers', () => store.replaceReducer(createReducer()));
     }
   }
 
@@ -29,6 +29,7 @@ export default function configureStore(history, initialState = {}) {
 }
 
 export function injectAsyncReducer(store, name, asyncReducer) {
+  /* eslint no-param-reassign:0 */
   store.asyncReducers[name] = asyncReducer;
   store.replaceReducer(createReducer(store.asyncReducers));
 }

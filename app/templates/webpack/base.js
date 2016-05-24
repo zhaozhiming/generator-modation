@@ -30,7 +30,6 @@ module.exports = {
     ],
   },
   module: {
-    noParse: [/handsontable\.full\.js/],
     preLoaders: [{
       test: /\.(js|jsx)$/,
       include: srcPath,
@@ -56,6 +55,9 @@ module.exports = {
   },
   plugins: [
     new webpack.NoErrorsPlugin(),
+    new webpack.ProvidePlugin({
+      'Promise': 'bluebird',
+    }),
     new ExtractTextPlugin('[name].css', { allChunks: true }),
   ],
   postcss: () => {
