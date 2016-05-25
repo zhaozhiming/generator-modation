@@ -10,6 +10,7 @@
 
 ## 目录结构
 
+```
 ├── .babelrc  
 ├── .eslintrc  
 ├── package.json  
@@ -47,7 +48,8 @@
 │   │   └── App.css  
 │   └── utils  
 │       └── README.md  
-└── webpack  
+└── webpack
     ├── base.js  
     ├── client.js  
     └── server.js  
+```
