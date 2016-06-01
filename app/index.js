@@ -51,6 +51,14 @@ module.exports = generators.Base.extend({
       this.destinationPath('devServer.js')
     );
     this.fs.copy(
+      this.templatePath('validate-commit-msg.js'),
+      this.destinationPath('validate-commit-msg.js')
+    );
+    this.fs.copy(
+      this.templatePath('_eslintignore'),
+      this.destinationPath('.eslintignore')
+    );
+    this.fs.copy(
       this.templatePath('docs/README.md'),
       this.destinationPath('docs/README.md')
     );
@@ -68,6 +76,10 @@ module.exports = generators.Base.extend({
       {
         projectName: this.props.projectName,
       }
+    );
+    this.fs.copy(
+      this.templatePath('test/**/*.*'),
+      this.destinationPath('test')
     );
     this.fs.copy(
       this.templatePath('test/_eslintrc'),
