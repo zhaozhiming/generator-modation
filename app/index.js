@@ -43,6 +43,10 @@ module.exports = generators.Base.extend({
       this.destinationPath('.eslintrc')
     );
     this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
+    this.fs.copy(
       this.templatePath('devServer.js'),
       this.destinationPath('devServer.js')
     );
@@ -64,6 +68,14 @@ module.exports = generators.Base.extend({
       {
         projectName: this.props.projectName,
       }
+    );
+    this.fs.copy(
+      this.templatePath('test/_eslintrc'),
+      this.destinationPath('test/.eslintrc')
+    );
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
     );
   },
 });
