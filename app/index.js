@@ -1,11 +1,11 @@
 const generators = require('yeoman-generator');
 
 module.exports = generators.Base.extend({
-  constructor: function () {
+  constructor: function() {
     generators.Base.apply(this, arguments);
   },
 
-  prompting: function () {
+  prompting: function() {
     var prompts = [
       {
         type: 'input',
@@ -26,49 +26,23 @@ module.exports = generators.Base.extend({
   },
 
   writing: function() {
+    this.fs.copy(
+      this.templatePath('**/.*'),
+      this.destinationRoot(),
+      { dot: true }
+    );
+    this.fs.copy(
+      this.templatePath('**/*.*'),
+      this.destinationRoot(),
+      { dot: true }
+    );
     this.fs.copyTpl(
-      this.templatePath('_package.json'),
+      this.templatePath('package.json'),
       this.destinationPath('package.json'),
       {
         projectName: this.props.projectName,
         projectDesc: this.props.projectDesc,
       }
-    );
-    this.fs.copy(
-      this.templatePath('_babelrc'),
-      this.destinationPath('.babelrc')
-    );
-    this.fs.copy(
-      this.templatePath('_eslintrc'),
-      this.destinationPath('.eslintrc')
-    );
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
-    this.fs.copy(
-      this.templatePath('devServer.js'),
-      this.destinationPath('devServer.js')
-    );
-    this.fs.copy(
-      this.templatePath('validate-commit-msg.js'),
-      this.destinationPath('validate-commit-msg.js')
-    );
-    this.fs.copy(
-      this.templatePath('_eslintignore'),
-      this.destinationPath('.eslintignore')
-    );
-    this.fs.copy(
-      this.templatePath('docs/README.md'),
-      this.destinationPath('docs/README.md')
-    );
-    this.fs.copy(
-      this.templatePath('webpack/**/*.*'),
-      this.destinationPath('webpack')
-    );
-    this.fs.copy(
-      this.templatePath('src/**/*.*'),
-      this.destinationPath('src')
     );
     this.fs.copyTpl(
       this.templatePath('src/server/index.js'),
@@ -76,18 +50,6 @@ module.exports = generators.Base.extend({
       {
         projectName: this.props.projectName,
       }
-    );
-    this.fs.copy(
-      this.templatePath('test/**/*.*'),
-      this.destinationPath('test')
-    );
-    this.fs.copy(
-      this.templatePath('test/_eslintrc'),
-      this.destinationPath('test/.eslintrc')
-    );
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
     );
   },
 });
