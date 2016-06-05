@@ -28,9 +28,9 @@ class Name extends Component {
   render() {
     const { name } = this.state;
     return (
-      <div className={style.title}>
+      <div className={style.name}>
         <span>Name: {this.props.name}</span>
-        <Input value={name} onChange={this.handleChange} />
+        <Input className={style.label} value={name} onChange={this.handleChange} />
         <Button onClick={this.handleClick} >Change Name</Button>
       </div>
     );

@@ -32,9 +32,9 @@ class Message extends Component {
   render() {
     const { message } = this.state;
     return (
-      <div className={style.title}>
+      <div className={style.message}>
         <span>Message: {this.props.message}</span>
-        <Input value={message} onChange={this.handleChange} />
+        <Input className={style.label} value={message} onChange={this.handleChange} />
         <Button onClick={this.handleClick} >Change Message</Button>
       </div>
     );

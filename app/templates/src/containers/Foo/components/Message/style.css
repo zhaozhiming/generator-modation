@@ -1,4 +1,8 @@
 .message {
-  color: blue;
   font-size: 14px;
+}
+
+.message .label {
+  margin-left: 20px;
+  margin-right: 20px;
 }

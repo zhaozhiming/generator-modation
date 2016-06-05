@@ -1,3 +1,9 @@
 .main {
-  margin: 0 auto;
+  position: relative;
+}
+
+.content .main {
+  position: relative;
+  margin-top: 10px;
+  text-align: center;
 }
