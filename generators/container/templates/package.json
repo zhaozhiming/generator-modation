@@ -1,0 +1,6 @@
+{
+  "name": "<%= containerName %>",
+  "description": "",
+  "main": "./<%= containerName %>.jsx",
+  "private": true
+}
