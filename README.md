@@ -60,3 +60,13 @@
     ├── client.js
     └── server.js
 ```
+
+## Sub Generator
+
+### Component
+
+> yo modation:component <componet-name>
+
+### container
+
+> yo modation:container <container-name>
