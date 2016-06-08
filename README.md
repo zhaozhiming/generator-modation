@@ -63,10 +63,22 @@
 
 ## Sub Generator
 
-### Component
+### 添加新组件
 
 > yo modation:component <componet-name>
 
-### container
+### 添加新container
 
 > yo modation:container <container-name>
+
+## Todo List
+
+- [] 将 antd 组件从示例代码中取消，改用纯html标签
+- [] 将 antd 改成在创建工程的时候选择配置
+- [] 将启动服务改成使用webpack devserver来启动
+- [] 将后端服务去掉
+- [] sub-generator component 需要放置到src/components下
+- [] sub-generator container 需要放置到src/containers下
+
+
+
