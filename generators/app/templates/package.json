@@ -16,7 +16,9 @@
     "commitmsg": "node validate-commit-msg.js"
   },
   "dependencies": {
+<% if (packageOpts.uiLib === 'antd') { -%>
     "antd": "^1.1.0",
+<% } -%>
     "h2o2": "^5.1.0",
     "hapi": "^13.4.1",
     "immutable": "^3.8.1",
@@ -36,7 +38,9 @@
     "babel-core": "^6.9.0",
     "babel-eslint": "^6.0.4",
     "babel-loader": "^6.2.4",
+<% if (packageOpts.uiLib === 'antd') { -%>
     "babel-plugin-antd": "^0.4.0",
+<% } -%>
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-runtime": "^6.9.0",
     "babel-polyfill": "^6.9.0",
@@ -67,5 +71,9 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
+  },
+  "engines": {
+    "node": "6.0.0",
+    "npm": "3.8.6"
   }
 }

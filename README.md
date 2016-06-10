@@ -15,6 +15,25 @@
 * 在新工程目录执行命令`npm install`安装依赖包
 * 在新工程目录执行命令`npm start`启动服务，访问地址：`localhost:8000`
 
+## 子生成器
+
+### 添加新组件
+
+> yo modation:component <componet-name>
+
+### 添加新container
+
+> yo modation:container <container-name>
+
+## Todo List
+
+- [x] 将 antd 组件从示例代码中取消，改用纯html标签
+- [x] 将 antd 改成在创建工程的时候选择配置
+- [] 将启动服务改成使用webpack devserver来启动
+- [] 将后端服务去掉
+- [] sub-generator component 需要放置到src/components下
+- [] sub-generator container 需要放置到src/containers下
+
 ## 目录结构
 
 ```
@@ -60,25 +79,3 @@
     ├── client.js
     └── server.js
 ```
-
-## Sub Generator
-
-### 添加新组件
-
-> yo modation:component <componet-name>
-
-### 添加新container
-
-> yo modation:container <container-name>
-
-## Todo List
-
-- [] 将 antd 组件从示例代码中取消，改用纯html标签
-- [] 将 antd 改成在创建工程的时候选择配置
-- [] 将启动服务改成使用webpack devserver来启动
-- [] 将后端服务去掉
-- [] sub-generator component 需要放置到src/components下
-- [] sub-generator container 需要放置到src/containers下
-
-
-
