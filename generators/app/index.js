@@ -33,6 +33,11 @@ module.exports = generators.Base.extend({
            },
          ],
       },
+      {
+        type: 'confirm',
+        name: 'serverSide',
+        message: 'Would you like to use the server side?',
+      },
     ];
 
     return this.prompt(prompts).then(function (props) {
@@ -42,16 +47,21 @@ module.exports = generators.Base.extend({
 
   writing: {
     projectTree: function() {
-      // copy hidden files
+      const templateFiles = [this.templatePath() + '/**'];
+      // files filter
+      if (this.props.serverSide) {
+        templateFiles.push('!**/index.html');
+      } else {
+        templateFiles.push('!**/server/**');
+        templateFiles.push('!**/server.js');
+        templateFiles.push('!**/devServer.js');
+      }
+
+      // copy all files
       this.fs.copy(
-        this.templatePath('**/.*'),
+        templateFiles,
         this.destinationRoot(),
-        { dot: true }
-      );
-      // copy unhidden files
-      this.fs.copy(
-        this.templatePath('**/*.*'),
-        this.destinationRoot()
+        { globOptions: { dot: true } }
       );
       // copy babelrc with uilib
       this.fs.copyTpl(
@@ -72,19 +82,20 @@ module.exports = generators.Base.extend({
         {
           projectName: this.props.projectName,
           projectDesc: this.props.projectDesc,
-          packageOpts: {
-            uiLib: this.props.uiLib,
-          },
+          uiLib: this.props.uiLib,
+          serverSide: this.props.serverSide,
         }
       );
     },
 
     serverNode: function() {
-      this.fs.copyTpl(
-        this.templatePath('src/server/index.js'),
-        this.destinationPath('src/server/index.js'),
-        { projectName: this.props.projectName }
-      );
+      if (this.props.serverSide) {
+        this.fs.copyTpl(
+          this.templatePath('src/server/index.js'),
+          this.destinationPath('src/server/index.js'),
+          { projectName: this.props.projectName }
+        );
+      }
     },
   },
 });

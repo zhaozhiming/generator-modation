@@ -4,7 +4,6 @@
 * React
 * Redux
 * Webpack
-* Antd
 * Immutable
 
 ## 用法
@@ -19,20 +18,27 @@
 
 ### 添加新组件
 
-> yo modation:component <componet-name>
+* 进到你要添加组件的目录，比如: `cd src/components`
+* 然后执行以下命令:
+```
+yo modation:component <componet-name>
+```
 
 ### 添加新container
 
-> yo modation:container <container-name>
+* 在项目根目录下执行以下命令:
+```
+yo modation:container <container-name>
+```
 
 ## Todo List
 
 - [x] 将 antd 组件从示例代码中取消，改用纯html标签
 - [x] 将 antd 改成在创建工程的时候选择配置
-- [] 将启动服务改成使用webpack devserver来启动
-- [] 将后端服务去掉
-- [] sub-generator component 需要放置到src/components下
+- [x] 将启动服务改成使用webpack devserver来启动
+- [x] 将后端服务改成用户选择配置
 - [] sub-generator container 需要放置到src/containers下
+- [] sub-generator component 修改jsx文件为js
 
 ## 目录结构
 
