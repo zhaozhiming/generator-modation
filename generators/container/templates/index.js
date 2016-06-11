@@ -1,10 +1,8 @@
 <% if (enableCssModules) { %>
-  import style from './style.css';
-<% } else { %>
-    import './style.css';
+import style from './style.css';
 <% } %>
 
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,7 +10,7 @@ import * as actions from './actions';
 
 
 @connect(mapStateToProps, mapDispatchToProps)
-class <%= containerName %> extends React.Component {
+class <%= containerName %> extends Component {
   static propTypes = {
     state: Proptypes.object.isRequired,
     actions: Proptypes.object.isRequired,

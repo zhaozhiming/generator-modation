@@ -18,17 +18,12 @@ class Component extends generators.Base {
     const prompts = [
       {
         type: 'checkbox',
-        name: 'files',
+        name: 'features',
         message: 'What more would you like?',
         choices: [
           {
-            name: 'package.json',
-            value: 'packageJson',
-            checked: true,
-          },
-          {
-            name: 'README.md',
-            value: 'readme',
+            name: 'CSS Modules',
+            value: 'cssModules',
             checked: true,
           },
         ],
@@ -42,26 +37,26 @@ class Component extends generators.Base {
 
   writing() {
     const componentName = this.componentName;
+
     this.fs.copyTpl(
-      this.templatePath('index.jsx'),
-      this.destinationPath(`${componentName}/${componentName}.jsx`),
+      this.templatePath('index.js'),
+      this.destinationPath(`${componentName}/${componentName}.js`),
+      {
+        componentName,
+        enableCssModules: this.props.features.includes('cssModules'),
+      }
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath(`${componentName}/package.json`),
       { componentName }
     );
 
-    if (this.props.files.includes('packageJson')) {
-      this.fs.copyTpl(
-        this.templatePath('package.json'),
-        this.destinationPath(`${componentName}/package.json`),
-        { componentName }
-      );
-    }
-
-    if (this.props.files.includes('readme')) {
-      this.fs.copy(
-        this.templatePath('README.md'),
-        this.destinationPath(`${componentName}/README.md`)
-      );
-    }
+    this.fs.copy(
+      this.templatePath('style.css'),
+      this.destinationPath(`${componentName}/style.css`)
+    );
   }
 }
 

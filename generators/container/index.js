@@ -26,11 +26,6 @@ class Container extends generators.Base {
             value: 'cssModules',
             checked: true,
           },
-          {
-            name: 'README.md',
-            value: 'readme',
-            checked: true,
-          },
         ],
       },
     ];
@@ -44,8 +39,8 @@ class Container extends generators.Base {
     const containerName = this.containerName;
 
     this.fs.copyTpl(
-      this.templatePath('index.jsx'),
-      this.destinationPath(`${containerName}/${this.containerName}.jsx`),
+      this.templatePath('index.js'),
+      this.destinationPath(`${containerName}/${this.containerName}.js`),
       {
         containerName,
         enableCssModules: this.props.features.includes('cssModules'),
@@ -78,13 +73,6 @@ class Container extends generators.Base {
       this.templatePath('style.css'),
       this.destinationPath(`${containerName}/style.css`)
     );
-
-    if (this.props.features.includes('readme')) {
-      this.fs.copy(
-        this.templatePath('README.md'),
-        this.destinationPath(`${containerName}/README.md`)
-      );
-    }
 
   }
 }

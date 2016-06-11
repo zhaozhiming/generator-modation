@@ -26,7 +26,7 @@ yo modation:component <componet-name>
 
 ### 添加新container
 
-* 在项目根目录下执行以下命令:
+* 进到`src/containers`目录，执行以下命令:
 ```
 yo modation:container <container-name>
 ```
@@ -37,8 +37,8 @@ yo modation:container <container-name>
 - [x] 将 antd 改成在创建工程的时候选择配置
 - [x] 将启动服务改成使用webpack devserver来启动
 - [x] 将后端服务改成用户选择配置
-- [] sub-generator container 需要放置到src/containers下
-- [] sub-generator component 修改jsx文件为js
+- [x] sub-generator container 需要放置到src/containers下
+- [x] sub-generator component 修改jsx文件为js
 
 ## 目录结构
 
