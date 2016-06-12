@@ -5,16 +5,19 @@
   "main": "",
   "scripts": {
     "clean": "rm -rf dist/*",
+    "eslint": "eslint src test",
+    "test": "NODE_PATH=$NODE_PATH:$PWD/src mocha --compilers js:babel-core/register,js:babel-polyfill,css:test/css-null-compiler.js --recursive",
     "webpack:client-prod": "NODE_ENV=production webpack --config webpack/client.js --progress ",
+<% if (serverSide) { -%>
     "webpack:server-prod": "NODE_ENV=production webpack --config webpack/server.js --progress && cp -r node_modules dist/",
     "webpack:server-dev": "NODE_ENV=development webpack --config webpack/server.js --progress",
     "dist": "npm run clean && npm run webpack:client-prod && npm run webpack:server-prod",
-    "eslint": "eslint src test",
-    "test": "NODE_PATH=$NODE_PATH:$PWD/src mocha --compilers js:babel-core/register,js:babel-polyfill,css:test/css-null-compiler.js --recursive",
-<% if (serverSide) { -%>
     "start": "NODE_ENV=development nodemon --watch src/server --exec 'npm run clean && npm run webpack:server-dev && node devServer.js'",
+    "start:dist": "npm run dist && cd dist && node server.js",
 <% } else { -%>
+    "dist": "npm run clean && npm run webpack:client-prod",
     "start": "webpack-dev-server --inline --config webpack/client.js",
+    "start:dist": "npm run dist && cp index.html dist/ && cd dist && open index.html",
 <% } -%>
     "precommit": "npm run eslint && npm test",
     "commitmsg": "node validate-commit-msg.js"
