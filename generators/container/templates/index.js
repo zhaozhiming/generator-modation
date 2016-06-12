@@ -9,11 +9,23 @@ import { bindActionCreators } from 'redux';
 import * as actions from './actions';
 
 
+function mapStateToProps(state) {
+  return {
+    state: state.<%= containerName.toLowerCase() %>,
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+
 @connect(mapStateToProps, mapDispatchToProps)
 class <%= containerName %> extends Component {
   static propTypes = {
-    state: Proptypes.object.isRequired,
-    actions: Proptypes.object.isRequired,
+    state: PropTypes.object.isRequired,
+    actions: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
@@ -24,18 +36,6 @@ class <%= containerName %> extends Component {
   render() {
     return <div><%= containerName %></div>;
   }
-}
-
-function mapStateToProps(state) {
-  return {
-    state: state.<%= containerName %>,
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(actions, dispatch),
-  };
 }
 
 export default <%= containerName %>;
