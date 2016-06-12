@@ -5,10 +5,10 @@ import { injectAsyncReducer } from 'store';
 
 export default function createRoutes(store) {
   return {
-    path: '/<%= containerName %>',
+    path: '<%= containerName.toLowerCase() %>',
     getComponent(location, cb) {
       require.ensure([], (require) => {
-        injectAsyncReducer(store, <%= containerName %>, require('./reducer').default);
+        injectAsyncReducer(store, '<%= containerName.toLowerCase() %>', require('./reducer').default);
 
         cb(null, require('./<%= containerName %>').default);
       });
