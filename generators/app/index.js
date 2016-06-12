@@ -19,21 +19,6 @@ module.exports = generators.Base.extend({
         message: 'Your project description',
       },
       {
-         type: 'list',
-         name: 'uiLib',
-         message: 'Which react UI library would you like:',
-         choices: [
-           {
-             name: 'No, I use the library for myself',
-             value: 'none',
-           },
-           {
-             name: 'Ant-design',
-             value: 'antd',
-           },
-         ],
-      },
-      {
         type: 'confirm',
         name: 'serverSide',
         message: 'Would you like to use the server side?',
@@ -63,16 +48,6 @@ module.exports = generators.Base.extend({
         this.destinationRoot(),
         { globOptions: { dot: true } }
       );
-      // copy babelrc with uilib
-      this.fs.copyTpl(
-        this.templatePath('.babelrc'),
-        this.destinationPath('.babelrc'),
-        {
-          packageOpts: {
-            uiLib: this.props.uiLib,
-          },
-        }
-      );
     },
 
     packageJSON: function() {
@@ -82,7 +57,6 @@ module.exports = generators.Base.extend({
         {
           projectName: this.props.projectName,
           projectDesc: this.props.projectDesc,
-          uiLib: this.props.uiLib,
           serverSide: this.props.serverSide,
         }
       );

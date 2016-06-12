@@ -1,4 +1,5 @@
 import style from './style.css';
+import { Button, Input } from 'antd';
 import React, { Component, PropTypes } from 'react';
 
 class Name extends Component {
@@ -29,8 +30,8 @@ class Name extends Component {
     return (
       <div className={style.name}>
         <span>Name: {this.props.name}</span>
-        <input type="text" className={style.label} value={name} onChange={this.handleChange} />
-        <button onClick={this.handleClick} >Change Name</button>
+        <Input type="text" className={style.label} value={name} onChange={this.handleChange} />
+        <Button onClick={this.handleClick} >Change Name</Button>
       </div>
     );
   }

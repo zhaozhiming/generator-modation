@@ -5,6 +5,7 @@
 * Redux
 * Webpack
 * Immutable
+* Antd
 
 ## 用法
 
@@ -33,8 +34,6 @@ yo modation:container <container-name>
 
 ## Todo List
 
-- [x] 将 antd 组件从示例代码中取消，改用纯html标签
-- [x] 将 antd 改成在创建工程的时候选择配置
 - [x] 将启动服务改成使用webpack devserver来启动
 - [x] 将后端服务改成用户选择配置
 - [x] sub-generator container 需要放置到src/containers下

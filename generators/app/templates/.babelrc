@@ -7,8 +7,6 @@
   "plugins": [
     "transform-runtime",
     "babel-plugin-transform-decorators-legacy",
-<% if (packageOpts.uiLib === 'antd') { -%>
     "antd"
-<% } -%>
   ]
 }
