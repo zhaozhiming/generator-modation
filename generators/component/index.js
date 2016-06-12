@@ -7,6 +7,13 @@ class Component extends generators.Base {
   constructor(args, opts) {
     super(args, opts);
 
+    this.option('stateless', {
+      type: Boolean,
+      required: false,
+      defaults: false,
+      desc: 'is stateless component?'
+    });
+
     this.argument('componentName', {
       type: String,
       required: true,
@@ -40,7 +47,7 @@ class Component extends generators.Base {
 
     this.fs.copyTpl(
       this.templatePath('index.js'),
-      this.destinationPath(`${componentName}/${componentName}.js`),
+      this.destinationPath(`${componentName}/${componentName}.jsx`),
       {
         componentName,
         enableCssModules: this.props.features.includes('cssModules'),
