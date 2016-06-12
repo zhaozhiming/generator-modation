@@ -40,7 +40,7 @@ class Component extends generators.Base {
 
     this.fs.copyTpl(
       this.templatePath('index.js'),
-      this.destinationPath(`${componentName}/${componentName}.js`),
+      this.destinationPath(`${componentName}/${componentName}.jsx`),
       {
         componentName,
         enableCssModules: this.props.features.includes('cssModules'),
