@@ -20,7 +20,7 @@ const config = Object.assign({}, baseConfig, {
 
 if (process.env.NODE_ENV === 'development') {
   const hostname = process.env.HOST || 'localhost';
-  const port = 8080;
+  const port = process.env.CLIENT_PORT || 8080;
 
   config.cache = true;
   config.debug = true;
@@ -48,7 +48,6 @@ if (process.env.NODE_ENV === 'development') {
 
   config.historyApiFallback = false;
   config.devServer = {
-    contentBase: '../dist',
     port,
     host: hostname,
     publicPath: config.output.publicPath,

@@ -16,7 +16,7 @@
     "start:dist": "npm run dist && cd dist && node server.js",
 <% } else { -%>
     "dist": "npm run clean && npm run webpack:client-prod",
-    "start": "webpack-dev-server --inline --config webpack/client.js",
+    "start": "CLIENT_PORT=8000 NODE_ENV=development webpack-dev-server --inline --config webpack/client.js",
     "start:dist": "npm run dist && cp index.html dist/ && cd dist && open index.html",
 <% } -%>
     "precommit": "npm run eslint && npm test",
