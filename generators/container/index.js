@@ -39,7 +39,7 @@ class Container extends generators.Base {
     const containerName = this.containerName;
 
     this.fs.copyTpl(
-      this.templatePath('index.js'),
+      this.templatePath('container.js'),
       this.destinationPath(`${containerName}/${this.containerName}.js`),
       {
         containerName,
@@ -48,8 +48,8 @@ class Container extends generators.Base {
     );
 
     this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath(`${containerName}/package.json`),
+      this.templatePath('index.js'),
+      this.destinationPath(`${containerName}/index.js`),
       { containerName }
     );
 
