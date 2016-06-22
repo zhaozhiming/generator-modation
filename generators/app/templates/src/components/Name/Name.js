@@ -30,7 +30,7 @@ class Name extends Component {
     return (
       <div className={style.name}>
         <span>Name: {this.props.name}</span>
-        <Input type="text" className={style.label} value={name} onChange={this.handleChange} />
+        <Input className={style.label} value={name} onChange={this.handleChange} />
         <Button onClick={this.handleClick} >Change Name</Button>
       </div>
     );

@@ -34,7 +34,7 @@ class Message extends Component {
     return (
       <div className={style.message}>
         <span>Message: {this.props.message}</span>
-        <Input type="text" className={style.label} value={message} onChange={this.handleChange} />
+        <Input className={style.label} value={message} onChange={this.handleChange} />
         <Button onClick={this.handleClick} >Change Message</Button>
       </div>
     );
