@@ -1,22 +1,27 @@
 import style from './style.css';
+
 import React, { Component, PropTypes } from 'react';
+import classnames from 'classnames';
 
 class Header extends Component {
   static propTypes = {
-    title: PropTypes.string.isRequired,
+    style: PropTypes.string,
+    className: PropTypes.string,
   };
 
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      title: this.props.title,
-    };
-  }
+  static defaultProps = {
+    className: '',
+  };
 
   render() {
+    const { className } = this.props;
+
     return (
-      <div className={style.header}>
-        <span className={style.title}>Hello {this.state.title}</span>
+      <div
+        style={this.props.style}
+        className={classnames(...className.split(), style.header)}
+      >
+        <span className={style.title}>Hello World</span>
       </div>
     );
   }

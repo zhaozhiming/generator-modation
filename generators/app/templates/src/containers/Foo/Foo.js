@@ -41,7 +41,7 @@ class Foo extends Component {
     const { name, message } = this.props.foo.toJS();
     return (
       <div className={style.content}>
-        <Header title="World" />
+        <Header />
         <div className={style.main} >
           <Name name={name} fooActions={this.props.fooActions} />
           <Message message={message} />
