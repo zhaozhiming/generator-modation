@@ -48,6 +48,14 @@ module.exports = generators.Base.extend({
         this.destinationRoot(),
         { globOptions: { dot: true } }
       );
+
+      if (!this.props.serverSide) {
+        this.fs.copyTpl(
+          this.templatePath('index.html'),
+          this.destinationPath('index.html'),
+          { projectName: this.props.projectName }
+        );
+      }
     },
 
     packageJSON: function() {
