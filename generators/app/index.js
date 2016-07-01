@@ -65,8 +65,8 @@ module.exports = generators.Base.extend({
     serverNode: function() {
       if (this.props.serverSide) {
         this.fs.copyTpl(
-          this.templatePath('src/server/index.js'),
-          this.destinationPath('src/server/index.js'),
+          this.templatePath('src/server/handlers/staticFiles.js'),
+          this.destinationPath('src/server/handlers/staticFiles.js'),
           { projectName: this.props.projectName }
         );
       }
