@@ -40,6 +40,7 @@ yo modation:container <container-name>
 - [x] sub-generator component 修改 jsx 文件为 js
 - [] 生成 compoent 测试文件的 generetor
 - [] 加上 fetch 数据的示例
+- [] 将子生成器的package.json变为index.js文件
 
 ## 目录结构
 
