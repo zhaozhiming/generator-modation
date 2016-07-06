@@ -46,7 +46,7 @@ class Component extends generators.Base {
     const componentName = this.componentName;
 
     this.fs.copyTpl(
-      this.templatePath('index.js'),
+      this.templatePath('component.js'),
       this.destinationPath(`${componentName}/${componentName}.js`),
       {
         componentName,
@@ -55,9 +55,11 @@ class Component extends generators.Base {
     );
 
     this.fs.copyTpl(
-      this.templatePath('package.json'),
-      this.destinationPath(`${componentName}/package.json`),
-      { componentName }
+      this.templatePath('index.js'),
+      this.destinationPath(`${componentName}/index.js`),
+      {
+        componentName,
+      }
     );
 
     this.fs.copy(
