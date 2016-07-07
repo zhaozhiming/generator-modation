@@ -13,3 +13,16 @@ export function changeMessage(message) {
     message,
   };
 }
+
+export function randomName(num) {
+  return (dispatch) => (
+    fetch('/api/name/random', {
+      method: 'post',
+      body: JSON.stringify({
+        num,
+      }),
+    })
+    .then(response => response.json())
+    .then(json => dispatch(changeName(json.name)))
+  );
+}

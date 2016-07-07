@@ -3,6 +3,7 @@ import h2o2 from 'h2o2';
 import inert from 'inert';
 import main from './handlers/main';
 import staticFiles from './handlers/staticFiles';
+import name from './handlers/name';
 
 
 /**
@@ -19,7 +20,7 @@ server.register(
   }
 );
 
-server.route([main, staticFiles]);
+server.route([main, staticFiles, name]);
 
 export function runServer() {
   server.start(() => {

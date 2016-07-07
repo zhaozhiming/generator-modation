@@ -14,15 +14,20 @@ class Name extends Component {
       name: this.props.name,
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleNormalClick = this.handleNormalClick.bind(this);
+    this.handleRandomClick = this.handleRandomClick.bind(this);
   }
 
   handleChange(event) {
     this.setState({ name: event.target.value });
   }
 
-  handleClick() {
+  handleNormalClick() {
     this.props.fooActions.changeName(this.state.name);
+  }
+
+  handleRandomClick() {
+    this.props.fooActions.randomName(1);
   }
 
   render() {
@@ -31,7 +36,8 @@ class Name extends Component {
       <div className={style.name}>
         <span>Name: {this.props.name}</span>
         <Input className={style.label} value={name} onChange={this.handleChange} />
-        <Button onClick={this.handleClick} >Change Name</Button>
+        <Button onClick={this.handleNormalClick} >Change Name</Button>
+        <Button onClick={this.handleRandomClick} >Random Name</Button>
       </div>
     );
   }
