@@ -12,7 +12,7 @@ const props = {
 const context = {
   fooActions: {
     changeMessage: sinon.spy(),
-  }
+  },
 };
 
 describe('Message component', () => {

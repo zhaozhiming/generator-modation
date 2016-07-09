@@ -39,9 +39,10 @@ yo modation:container <container-name>
 - [x] 将后端服务改成用户选择配置
 - [x] sub-generator container 需要放置到 src/containers 下
 - [x] sub-generator component 修改 jsx 文件为 js
-- [ ] 生成 compoent 测试文件的 generetor
 - [x] 加上 fetch 数据的示例
 - [x] 将子生成器的package.json变为index.js文件
+- [ ] 生成 compoent 测试文件的 generetor
+- [ ] 在模板中使用 css flex
 
 ## 目录结构
 
