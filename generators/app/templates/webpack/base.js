@@ -62,9 +62,7 @@ module.exports = {
     new ExtractTextPlugin('[name].css', { allChunks: true }),
      new styleLintPlugin({
       configFile: path.join(__dirname, '../.stylelintrc'),
-      context: 'inherits from webpack',
       files: '../src/**/*.css',
-      failOnError: false,
     }),
   ],
   postcss: () => {
