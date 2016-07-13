@@ -41,6 +41,7 @@ yo modation:container <container-name>
 - [x] sub-generator component 修改 jsx 文件为 js
 - [x] 加上 fetch 数据的示例
 - [x] 将子生成器的package.json变为index.js文件
+- [x] add css check
 - [ ] 生成 compoent 测试文件的 generetor
 - [ ] 在模板中使用 css flex
 

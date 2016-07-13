@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const styleLintPlugin = require('stylelint-webpack-plugin');
 
 const srcPath = path.join(__dirname, '/../src');
 const modulesPath = path.join(__dirname, '/../node_modules');
@@ -59,6 +60,12 @@ module.exports = {
       'Promise': 'bluebird',
     }),
     new ExtractTextPlugin('[name].css', { allChunks: true }),
+     new styleLintPlugin({
+      configFile: path.join(__dirname, '../.stylelintrc'),
+      context: 'inherits from webpack',
+      files: '../src/**/*.css',
+      failOnError: false,
+    }),
   ],
   postcss: () => {
     return [

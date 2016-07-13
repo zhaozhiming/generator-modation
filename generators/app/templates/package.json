@@ -5,7 +5,7 @@
   "main": "",
   "scripts": {
     "clean": "rm -rf dist/*",
-    "eslint": "eslint src test",
+    "check": "eslint src test && stylelint 'src/**/*.css'",
     "test": "NODE_PATH=$NODE_PATH:$PWD/src mocha --compilers js:babel-core/register,js:babel-polyfill,css:test/css-null-compiler.js --recursive",
     "webpack:client-prod": "NODE_ENV=production webpack --config webpack/client.js --progress ",
 <% if (serverSide) { -%>
@@ -19,7 +19,7 @@
     "start": "CLIENT_PORT=8000 NODE_ENV=development webpack-dev-server --inline --config webpack/client.js",
     "start:dist": "npm run dist && cp index.html dist/ && cd dist && open index.html",
 <% } -%>
-    "precommit": "npm run eslint && npm test",
+    "precommit": "npm run check && npm test",
     "commitmsg": "node validate-commit-msg.js"
   },
   "dependencies": {
@@ -75,6 +75,8 @@
     "semver-regex": "^1.0.0",
     "sinon": "^1.17.4",
     "style-loader": "^0.13.1",
+    "stylelint": "^6.9.0",
+    "stylelint-webpack-plugin": "^0.2.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
