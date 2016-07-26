@@ -1,100 +1,49 @@
-# 前端项目 generator
+# Frontend Project Generator ([中文版](./docs/README.zh.md))
 
-## 技术栈
+## Technology Stack
+
 * React
 * Redux
 * Webpack
+* React-router
 * Immutable
 * Antd
 
-## 用法
+## Usage
 
-* 先 git clone 本工程，然后输入命令`npm link`（后续可以考虑发布到 npm 上），将工程加入到 npm 仓库中
-* 安装 yeoman: `npm install -g yo`
-* 在要新建工程的目录中通过命令`yo modation`来创建工程
-* 在新工程目录执行命令`git init .`工程添加git版本控制
-* 在新工程目录执行命令`npm install`安装依赖包
-* 在新工程目录执行命令`npm start`启动服务，访问地址：`localhost:8000`
+* npm install -g yo
+* npm install -g generator-modation
+* mkdir myapp && cd myadd
+* yo modation
+* npm install
+* npm start
+* view `localhost:8000` on your browser
+* Enjoy!
 
-## 子生成器
+## Sub Generator
 
-### 添加新组件
+### Add New Component
 
-* 进到你要添加组件的目录，比如：`cd src/components`
-* 然后执行以下命令：
+* Go to the folder where you will to add component, like: `cd src/components`
+* And run command as follow:
 ```
 yo modation:component <componet-name>
 ```
 
-### 添加新 container
+### Add New Container
 
-* 进到`src/containers`目录，执行以下命令：
+* Go to `src/containers` folder, run command as follow:
 ```
 yo modation:container <container-name>
 ```
 
-### 添加React组件测试用例
+### Add Testcase of React Component
 
-* 进到要创建测试用例的目录，执行以下命令：
+* Go to the folder where you will to add testcase, and run command as follow:
 ```
 yo modation:unittest <component-name>
 ```
 
-## Todo List
+## [Todo List](./docs/todo.md)
 
-- [x] 将启动服务改成使用 webpack devserver 来启动
-- [x] 将后端服务改成用户选择配置
-- [x] sub-generator container 需要放置到 src/containers 下
-- [x] sub-generator component 修改 jsx 文件为 js
-- [x] 加上 fetch 数据的示例
-- [x] 将子生成器的package.json变为index.js文件
-- [x] add css check
-- [x] 当纯前端模式时去掉randomName功能
-- [x] 生成 compoent 测试文件的 generetor
-- [x] 在模板中使用 css flex
-
-## 目录结构
-
-```
-├── .babelrc
-├── .eslintrc
-├── package.json
-├── devServer.js
-├── docs
-│   └── README.md
-├── src
-│   ├── app.js
-│   ├── components
-│   │   └── Name
-│   │       ├── Name.js
-│   │       ├── index.js
-│   │       └── style.css
-│   ├── constants
-│   │   └── actionTypes.js
-│   ├── containers
-│   │   └── Foo
-│   │       ├── Foo.js
-│   │       ├── actions.js
-│   │       ├── components
-│   │       │   └── Message
-│   │       │       ├── Message.js
-│   │       │       ├── index.js
-│   │       │       └── style.css
-│   │       ├── index.js
-│   │       ├── reducer.js
-│   │       └── style.css
-│   ├── reducers.js
-│   ├── routes.js
-│   ├── server
-│   │   ├── README.md
-│   │   └── index.js
-│   ├── store.js
-│   ├── styles
-│   │   └── App.css
-│   └── utils
-│       └── README.md
-└── webpack
-    ├── base.js
-    ├── client.js
-    └── server.js
-```
+## [Project Structure](./docs/project_structure.md)
