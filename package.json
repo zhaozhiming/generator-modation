@@ -2,11 +2,20 @@
   "name": "generator-modation",
   "version": "0.4.0",
   "description": "a frontend project generator with React, Redux and Webpack etc.",
+  "license": "MIT",
+  "main": "generators/app/index.js",
   "repository": "knownsec/generator-modation",
   "bugs": {
     "url": "https://github.com/knownsec/generator-modation/issues"
   },
-  "main": "",
+  "author": {
+    "name": "zhaozhiming",
+    "email": "zhaozhiming003@gmail.com",
+    "url": "https://github.com/zhaozhiming"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
