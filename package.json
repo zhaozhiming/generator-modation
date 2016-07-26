@@ -1,6 +1,6 @@
 {
   "name": "generator-modation",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "a frontend project generator with React, Redux and Webpack etc.",
   "repository": "knownsec/generator-modation",
   "bugs": {
