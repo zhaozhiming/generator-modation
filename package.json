@@ -1,8 +1,8 @@
 {
   "name": "generator-modation",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "a frontend project generator with React, Redux and Webpack etc.",
-  "repository": "facebookincubator/create-react-app",
+  "repository": "nownsec/generator-modation",
   "bugs": {
     "url": "https://github.com/zhaozhiming/generator-modation/issues"
   },
