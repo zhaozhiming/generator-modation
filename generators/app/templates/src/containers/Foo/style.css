@@ -1,9 +1,9 @@
-.main {
-  position: relative;
+.content {
+  display: flex;
+  flex-direction: column;
 }
 
 .content .main {
-  position: relative;
   margin-top: 10px;
   text-align: center;
 }

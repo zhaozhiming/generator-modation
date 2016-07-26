@@ -51,7 +51,7 @@ yo modation:unittest <component-name>
 - [x] add css check
 - [x] 当纯前端模式时去掉randomName功能
 - [x] 生成 compoent 测试文件的 generetor
-- [ ] 在模板中使用 css flex
+- [x] 在模板中使用 css flex
 
 ## 目录结构
 
