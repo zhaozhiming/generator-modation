@@ -4,7 +4,7 @@
   "description": "a frontend project generator with React, Redux and Webpack etc.",
   "repository": "knownsec/generator-modation",
   "bugs": {
-    "url": "https://github.com/zhaozhiming/generator-modation/issues"
+    "url": "https://github.com/knownsec/generator-modation/issues"
   },
   "main": "",
   "scripts": {
