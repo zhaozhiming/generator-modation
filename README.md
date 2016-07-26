@@ -33,6 +33,13 @@ yo modation:component <componet-name>
 yo modation:container <container-name>
 ```
 
+### 添加React组件测试用例
+
+* 进到要创建测试用例的目录，执行以下命令：
+```
+yo modation:unittest <component-name>
+```
+
 ## Todo List
 
 - [x] 将启动服务改成使用 webpack devserver 来启动
@@ -43,7 +50,7 @@ yo modation:container <container-name>
 - [x] 将子生成器的package.json变为index.js文件
 - [x] add css check
 - [x] 当纯前端模式时去掉randomName功能
-- [ ] 生成 compoent 测试文件的 generetor
+- [x] 生成 compoent 测试文件的 generetor
 - [ ] 在模板中使用 css flex
 
 ## 目录结构
@@ -60,7 +67,7 @@ yo modation:container <container-name>
 │   ├── components
 │   │   └── Name
 │   │       ├── Name.js
-│   │       ├── package.json
+│   │       ├── index.js
 │   │       └── style.css
 │   ├── constants
 │   │   └── actionTypes.js
@@ -71,7 +78,7 @@ yo modation:container <container-name>
 │   │       ├── components
 │   │       │   └── Message
 │   │       │       ├── Message.js
-│   │       │       ├── package.json
+│   │       │       ├── index.js
 │   │       │       └── style.css
 │   │       ├── index.js
 │   │       ├── reducer.js

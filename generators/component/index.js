@@ -1,18 +1,9 @@
-'use strict';
-
 const generators = require('yeoman-generator');
 
 
 class Component extends generators.Base {
   constructor(args, opts) {
     super(args, opts);
-
-    this.option('stateless', {
-      type: Boolean,
-      required: false,
-      defaults: false,
-      desc: 'is stateless component?'
-    });
 
     this.argument('componentName', {
       type: String,

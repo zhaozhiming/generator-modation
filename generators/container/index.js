@@ -1,5 +1,3 @@
-'use strict';
-
 const generators = require('yeoman-generator');
 
 
