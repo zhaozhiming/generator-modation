@@ -1,4 +1,4 @@
-# Frontend Project Generator ([中文版](./docs/README.zh.md))
+# Frontend Project Generator ([中文版](./docs/README_zh.md))
 
 ## Technology Stack
 
