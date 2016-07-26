@@ -42,6 +42,7 @@ yo modation:container <container-name>
 - [x] 加上 fetch 数据的示例
 - [x] 将子生成器的package.json变为index.js文件
 - [x] add css check
+- [x] 当纯前端模式时去掉randomName功能
 - [ ] 生成 compoent 测试文件的 generetor
 - [ ] 在模板中使用 css flex
 

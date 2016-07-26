@@ -14,6 +14,7 @@ export function changeMessage(message) {
   };
 }
 
+<% if (serverSide) { -%>
 export function randomName(num) {
   return (dispatch) => (
     fetch('/api/name/random', {
@@ -26,3 +27,4 @@ export function randomName(num) {
     .then(json => dispatch(changeName(json.name)))
   );
 }
+<% } -%>

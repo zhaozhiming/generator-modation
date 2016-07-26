@@ -56,6 +56,22 @@ module.exports = generators.Base.extend({
           { projectName: this.props.projectName }
         );
       }
+
+      this.fs.copyTpl(
+        this.templatePath('src/containers/Foo/actions.js'),
+        this.destinationPath('src/containers/Foo/actions.js'),
+        {
+          serverSide: this.props.serverSide,
+        }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('src/components/Name/Name.js'),
+        this.destinationPath('src/components/Name/Name.js'),
+        {
+          serverSide: this.props.serverSide,
+        }
+      );
     },
 
     packageJSON: function() {
