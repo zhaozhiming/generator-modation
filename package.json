@@ -1,6 +1,6 @@
 {
   "name": "generator-modation",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "a frontend project generator with React, Redux and Webpack etc.",
   "license": "MIT",
   "main": "generators/app/index.js",
@@ -8,11 +8,7 @@
   "bugs": {
     "url": "https://github.com/knownsec/generator-modation/issues"
   },
-  "author": {
-    "name": "zhaozhiming",
-    "email": "zhaozhiming003@gmail.com",
-    "url": "https://github.com/zhaozhiming"
-  },
+  "author": "",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -25,8 +21,6 @@
   "files": [
     "app"
   ],
-  "author": "",
-  "license": "MIT",
   "dependencies": {
     "yeoman-generator": "^0.23.3"
   }
