@@ -20,6 +20,12 @@
 * view `localhost:8000` on your browser
 * Enjoy!
 
+## Code Check
+
+* Eslint check JS with [airbnb JS style](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb)
+* Stylelint check CSS
+* Git commit message check
+
 ## Sub Generator
 
 ### Add New Component
