@@ -13,7 +13,7 @@
 
 * npm install -g yo
 * npm install -g generator-modation
-* mkdir myapp && cd myadd
+* mkdir myapp && cd myapp
 * yo modation
 * npm install
 * npm start
