@@ -31,7 +31,10 @@ class <%= containerName %> extends Component {
   static defaultProps = {
   };
 
-  state = {};
+  constructor(props, context) {
+    super(props, context);
+    this.state = {};
+  }
 
   render() {
     return <div><%= containerName %></div>;

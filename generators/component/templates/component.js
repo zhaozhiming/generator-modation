@@ -15,7 +15,10 @@ class <%= componentName %> extends Component {
     className: '',
   };
 
-  state = {};
+  constructor(props, context) {
+    super(props, context);
+    this.state = {};
+  }
 
   render() {
     const { className } = this.props;
