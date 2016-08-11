@@ -3,14 +3,14 @@ import { Button, Input } from 'antd';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 import sinon from 'sinon';
-import Message from 'containers/Foo/components/Message';
+import Message from 'containers/Main/components/Message';
 
 const props = {
   message: 'foo',
 };
 
 const context = {
-  fooActions: {
+  mainActions: {
     changeMessage: sinon.spy(),
   },
 };
@@ -28,7 +28,7 @@ describe('Message component', () => {
     const wrap = shallow(<Message {...props} />, { context });
     wrap.setState({ message: 'bar' });
     wrap.find(Button).simulate('click');
-    expect(context.fooActions.changeMessage.callCount).to.be.equal(1);
+    expect(context.mainActions.changeMessage.callCount).to.be.equal(1);
     expect(wrap.state('message')).to.be.equal('bar');
   });
 

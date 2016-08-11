@@ -5,7 +5,7 @@ import React, { Component, PropTypes } from 'react';
 class Name extends Component {
   static propTypes = {
     name: PropTypes.string.isRequired,
-    fooActions: PropTypes.object.isRequired,
+    mainActions: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
@@ -25,12 +25,12 @@ class Name extends Component {
   }
 
   handleNormalClick() {
-    this.props.fooActions.changeName(this.state.name);
+    this.props.mainActions.changeName(this.state.name);
   }
 
 <% if (serverSide) { -%>
   handleRandomClick() {
-    this.props.fooActions.randomName(1);
+    this.props.mainActions.randomName(1);
   }
 <% } -%>
 

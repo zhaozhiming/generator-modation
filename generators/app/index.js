@@ -58,8 +58,8 @@ module.exports = generators.Base.extend({
       }
 
       this.fs.copyTpl(
-        this.templatePath('src/containers/Foo/actions.js'),
-        this.destinationPath('src/containers/Foo/actions.js'),
+        this.templatePath('src/containers/Main/actions.js'),
+        this.destinationPath('src/containers/Main/actions.js'),
         {
           serverSide: this.props.serverSide,
         }

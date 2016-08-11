@@ -17,8 +17,8 @@
 │   ├── constants
 │   │   └── actionTypes.js
 │   ├── containers
-│   │   └── Foo
-│   │       ├── Foo.js
+│   │   └── Main
+│   │       ├── Main.js
 │   │       ├── actions.js
 │   │       ├── components
 │   │       │   └── Message
@@ -40,7 +40,7 @@
 │       └── README.md
 ├── test
 │   ├── containers
-│   │   └── Foo
+│   │   └── Main
 │   │       ├── components
 │   │       │   └── Message
 │   │       │       └── Message.test.js

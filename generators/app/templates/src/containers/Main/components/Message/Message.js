@@ -9,7 +9,7 @@ class Message extends Component {
   };
 
   static contextTypes = {
-    fooActions: PropTypes.object,
+    mainActions: PropTypes.object,
   };
 
   constructor(props, context) {
@@ -26,7 +26,7 @@ class Message extends Component {
   }
 
   handleClick() {
-    this.context.fooActions.changeMessage(this.state.message);
+    this.context.mainActions.changeMessage(this.state.message);
   }
 
   render() {

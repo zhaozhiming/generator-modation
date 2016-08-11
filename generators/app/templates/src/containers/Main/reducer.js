@@ -6,7 +6,7 @@ const INITIAL_STATE = immutable.fromJS({
   message: 'hello world',
 });
 
-export default function foo(state = INITIAL_STATE, action) {
+export default function main(state = INITIAL_STATE, action) {
   switch (action.type) {
     case at.CHANGE_NAME:
       return state.update('name', () => action.name);

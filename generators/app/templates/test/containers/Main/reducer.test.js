@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import foo from 'containers/Foo/reducer';
+import main from 'containers/Main/reducer';
 import * as at from 'constants/actionTypes';
 import immutable from 'immutable';
 
-describe('foo reducer', () => {
+describe('main reducer', () => {
   it('should change name correctly', () => {
-    const result = foo(immutable.fromJS({}), {
+    const result = main(immutable.fromJS({}), {
       type: at.CHANGE_NAME,
       name: 'bar',
     });

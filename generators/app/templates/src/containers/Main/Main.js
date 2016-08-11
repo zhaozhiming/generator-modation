@@ -3,47 +3,47 @@ import style from './style.css';
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as FooActions from 'containers/Foo/actions';
+import * as MainActions from './actions';
 import Name from 'components/Name';
 import Header from './components/Header';
 import Message from './components/Message';
 
 
 function mapStateToProps(state) {
-  const { foo } = state;
-  return { foo };
+  const { main } = state;
+  return { main };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    fooActions: bindActionCreators(FooActions, dispatch),
+    mainActions: bindActionCreators(MainActions, dispatch),
   };
 }
 
 @connect(mapStateToProps, mapDispatchToProps)
-class Foo extends Component {
+class Main extends Component {
   static propTypes = {
-    foo: PropTypes.object.isRequired,
-    fooActions: PropTypes.object.isRequired,
+    main: PropTypes.object.isRequired,
+    mainActions: PropTypes.object.isRequired,
   };
 
   static childContextTypes = {
-    foo: PropTypes.object,
-    fooActions: PropTypes.object,
+    main: PropTypes.object,
+    mainActions: PropTypes.object,
   };
 
   getChildContext() {
-    const { foo, fooActions } = this.props;
-    return { foo, fooActions };
+    const { main, mainActions } = this.props;
+    return { main, mainActions };
   }
 
   render() {
-    const { name, message } = this.props.foo.toJS();
+    const { name, message } = this.props.main.toJS();
     return (
       <div className={style.content}>
         <Header />
         <div className={style.main} >
-          <Name name={name} fooActions={this.props.fooActions} />
+          <Name name={name} mainActions={this.props.mainActions} />
           <Message message={message} />
         </div>
       </div>
@@ -51,4 +51,4 @@ class Foo extends Component {
   }
 }
 
-export default Foo;
+export default Main;
