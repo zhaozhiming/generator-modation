@@ -58,6 +58,7 @@ if (process.env.NODE_ENV === 'development') {
     noInfo: false,
     headers: { 'Access-Control-Allow-Origin': '*' },
     stats: { colors: true },
+    quiet: true,
   };
 
   config.module.loaders.push({

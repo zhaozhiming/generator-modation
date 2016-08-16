@@ -5,7 +5,11 @@ const styleLintPlugin = require('stylelint-webpack-plugin');
 
 const srcPath = path.join(__dirname, '/../src');
 const modulesPath = path.join(__dirname, '/../node_modules');
-
+<% if (!serverSide) { -%>
+const Dashboard = require('webpack-dashboard');
+const DashboardPlugin = require('webpack-dashboard/plugin');
+const dashboard = new Dashboard();
+<% } -%>
 module.exports = {
   cache: false,
   context: __dirname,
@@ -64,6 +68,9 @@ module.exports = {
       configFile: path.join(__dirname, '../.stylelintrc'),
       files: '../src/**/*.css',
     }),
+<% if (!serverSide) { -%>
+    new DashboardPlugin(dashboard.setData),
+<% } -%>
   ],
   postcss: () => {
     return [
