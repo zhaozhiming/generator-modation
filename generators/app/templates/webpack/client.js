@@ -13,7 +13,7 @@ const config = Object.assign({}, baseConfig, {
     path: path.join(__dirname, '/../dist/assets'),
     filename: '[name].js',
     chunkFilename: '[name].[id].js',
-    publicPath: '../assets/',
+    publicPath: 'assets/',
   },
 });
 
