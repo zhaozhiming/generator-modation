@@ -5,15 +5,7 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack/client');
 const runServer = require('./dist/server').runServer;
 
-const Dashboard = require('webpack-dashboard');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-
-const compiler = webpack(config);
-const dashboard = new Dashboard();
-compiler.apply(new DashboardPlugin(dashboard.setData));
-
-
-new WebpackDevServer(compiler, config.devServer)
+new WebpackDevServer(webpack(config), config.devServer)
   .listen(config.devServer.port, 'localhost', (err) => {
     if (err) {
       console.log(err);

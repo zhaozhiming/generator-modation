@@ -58,14 +58,6 @@ module.exports = generators.Base.extend({
       }
 
       this.fs.copyTpl(
-        this.templatePath('webpack/base.js'),
-        this.destinationPath('webpack/base.js'),
-        {
-          serverSide: this.props.serverSide,
-        }
-      );
-
-      this.fs.copyTpl(
         this.templatePath('src/containers/Main/actions.js'),
         this.destinationPath('src/containers/Main/actions.js'),
         {

@@ -12,11 +12,11 @@
     "webpack:server-prod": "NODE_ENV=production webpack --config webpack/server.js --progress && cp -r node_modules dist/",
     "webpack:server-dev": "NODE_ENV=development webpack --config webpack/server.js --progress",
     "dist": "npm run clean && npm run webpack:client-prod && npm run webpack:server-prod",
-    "start": "NODE_ENV=development nodemon --watch src/server --exec 'npm run clean && npm run webpack:server-dev && node devServer.js'",
+    "start": "NODE_ENV=development webpack-dashboard -- nodemon --watch src/server --exec 'npm run clean && npm run webpack:server-dev && node devServer.js'",
     "start:dist": "npm run dist && cd dist && node server.js",
 <% } else { -%>
     "dist": "npm run clean && npm run webpack:client-prod",
-    "start": "CLIENT_PORT=8000 NODE_ENV=development webpack-dev-server --inline --config webpack/client.js",
+    "start": "CLIENT_PORT=8000 NODE_ENV=development webpack-dashboard -- webpack-dev-server --inline --config webpack/client.js",
     "start:dist": "npm run dist && cp index.html dist/ && cd dist && open index.html",
 <% } -%>
     "precommit": "npm run check && npm test",
@@ -78,7 +78,7 @@
     "stylelint": "^6.9.0",
     "stylelint-webpack-plugin": "^0.2.0",
     "webpack": "^1.13.1",
-    "webpack-dashboard": "^0.0.1",
+    "webpack-dashboard": "^0.1.7",
     "webpack-dev-server": "^1.14.1"
   },
   "engines": {

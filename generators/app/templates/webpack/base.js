@@ -5,11 +5,24 @@ const styleLintPlugin = require('stylelint-webpack-plugin');
 
 const srcPath = path.join(__dirname, '/../src');
 const modulesPath = path.join(__dirname, '/../node_modules');
-<% if (!serverSide) { -%>
-const Dashboard = require('webpack-dashboard');
-const DashboardPlugin = require('webpack-dashboard/plugin');
-const dashboard = new Dashboard();
-<% } -%>
+
+const plugins = [
+  new webpack.NoErrorsPlugin(),
+  new webpack.ProvidePlugin({
+    'Promise': 'bluebird',
+  }),
+  new ExtractTextPlugin('[name].css', { allChunks: true }),
+  new styleLintPlugin({
+    configFile: path.join(__dirname, '../.stylelintrc'),
+    files: '../src/**/*.css',
+  }),
+];
+
+if (process.env.NODE_ENV === 'development') {
+  const DashboardPlugin = require('webpack-dashboard/plugin');
+  plugins.push(new DashboardPlugin());
+}
+
 module.exports = {
   cache: false,
   context: __dirname,
@@ -59,20 +72,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.NoErrorsPlugin(),
-    new webpack.ProvidePlugin({
-      'Promise': 'bluebird',
-    }),
-    new ExtractTextPlugin('[name].css', { allChunks: true }),
-     new styleLintPlugin({
-      configFile: path.join(__dirname, '../.stylelintrc'),
-      files: '../src/**/*.css',
-    }),
-<% if (!serverSide) { -%>
-    new DashboardPlugin(dashboard.setData),
-<% } -%>
-  ],
+  plugins,
   postcss: () => {
     return [
       require('autoprefixer')({
