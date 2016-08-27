@@ -1,6 +1,7 @@
 .header {
   height: 80px;
-  background-color: #666;
+  background-image: url(images/header.png);
+  background-size: contain;
 }
 
 .header .title {

@@ -7,6 +7,7 @@ import * as MainActions from './actions';
 import Name from 'components/Name';
 import Header from './components/Header';
 import Message from './components/Message';
+import cat from 'images/cat.jpg';
 
 
 function mapStateToProps(state) {
@@ -45,6 +46,7 @@ class Main extends Component {
         <div className={style.main} >
           <Name name={name} mainActions={this.props.mainActions} />
           <Message message={message} />
+          <img className={style.cat} src={cat} alt="demo" />
         </div>
       </div>
     );
