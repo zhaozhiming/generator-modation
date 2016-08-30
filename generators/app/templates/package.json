@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "antd": "^1.5.0",
+    "classnames": "^2.2.5",
 <% if (serverSide) { -%>
     "h2o2": "^5.1.0",
     "hapi": "^13.4.1",
