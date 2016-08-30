@@ -18,10 +18,12 @@ const plugins = [
   }),
 ];
 
+<% if (!serverSide) { -%>
 if (process.env.NODE_ENV === 'development') {
   const DashboardPlugin = require('webpack-dashboard/plugin');
   plugins.push(new DashboardPlugin());
 }
+<% } -%>
 
 module.exports = {
   cache: false,

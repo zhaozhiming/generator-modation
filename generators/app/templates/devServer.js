@@ -5,6 +5,13 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack/client');
 const runServer = require('./dist/server').runServer;
 
+const compiler = webpack(config);
+
+if (process.env.NODE_ENV === 'development') {
+  const DashboardPlugin = require('webpack-dashboard/plugin');
+  compiler.apply(new DashboardPlugin());
+}
+
 new WebpackDevServer(webpack(config), config.devServer)
   .listen(config.devServer.port, 'localhost', (err) => {
     if (err) {
