@@ -50,6 +50,6 @@ yo modation:container <container-name>
 yo modation:unittest <component-name>
 ```
 
-## [待完成功能](./docs/todo.md)
+## [待完成功能](./todo.md)
 
-## [目录结构](./docs/project_structure.md)
+## [目录结构](./project_structure.md)
