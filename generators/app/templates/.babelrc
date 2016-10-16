@@ -7,6 +7,6 @@
   "plugins": [
     "transform-runtime",
     "babel-plugin-transform-decorators-legacy",
-    "antd"
+    ["import", {"libraryName": "antd"}]
   ]
 }

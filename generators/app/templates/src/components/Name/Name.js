@@ -1,6 +1,6 @@
-import style from './style.css';
 import { Button, Input } from 'antd';
 import React, { Component, PropTypes } from 'react';
+import style from './style.css';
 
 class Name extends Component {
   static propTypes = {

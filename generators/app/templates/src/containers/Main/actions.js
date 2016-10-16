@@ -16,7 +16,7 @@ export function changeMessage(message) {
 
 <% if (serverSide) { -%>
 export function randomName(num) {
-  return (dispatch) => (
+  return dispatch => (
     fetch('/api/name/random', {
       method: 'post',
       body: JSON.stringify({
