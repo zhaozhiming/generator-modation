@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === 'development') {
   compiler.apply(new DashboardPlugin());
 }
 
-new WebpackDevServer(webpack(config), config.devServer)
+new WebpackDevServer(compiler, config.devServer)
   .listen(config.devServer.port, 'localhost', (err) => {
     if (err) {
       console.log(err);

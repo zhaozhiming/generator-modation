@@ -11,12 +11,12 @@
 
 ## 用法
 
-* npm install -g yo
-* npm install -g generator-modation
-* mkdir myapp && cd myadd
+* yarn global add yo
+* yarn global add generator-modation
+* mkdir myapp && cd myapp
 * yo modation
-* npm install
-* npm start
+* yarn install
+* yarn start
 * view `localhost:8000` on your browser
 * Enjoy!
 
