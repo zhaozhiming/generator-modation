@@ -1,6 +1,6 @@
 # 前端项目生成器
 
-## [使用指南](./manual.md)
+## [使用指南](./docs/user_guide_zh.md)
 
 ## 技术栈
 
@@ -52,6 +52,6 @@ yo modation:container <container-name>
 yo modation:unittest <component-name>
 ```
 
-## [待完成功能](./todo.md)
+## [待完成功能](./docs/todo.md)
 
-## [目录结构](./project_structure.md)
+## [目录结构](./docs/project_structure.md)

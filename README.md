@@ -1,6 +1,6 @@
-# Frontend Project Generator ([中文版](./docs/README_zh.md))
+# Frontend Project Generator ([中文版](./README_zh.md))
 
-## [User Guide](./user_guide.md)
+## [User Guide](./docs/user_guide.md)
 
 ## Technology Stack
 
