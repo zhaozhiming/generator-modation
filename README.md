@@ -1,5 +1,7 @@
 # Frontend Project Generator ([中文版](./docs/README_zh.md))
 
+## [User Guide](./user_guide.md)
+
 ## Technology Stack
 
 * React
