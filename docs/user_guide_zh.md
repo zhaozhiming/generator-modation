@@ -94,7 +94,7 @@
 
 在开发环境运行项目，启动成功后，在浏览器打开http://localhost:8000可以访问。  
 
-当你修改项目中的文件并保存后，后台会重新加载，如果有错误会在终端显示。
+当你修改项目中的文件并保存后，应用进程会重新加载，如果有错误会在终端显示。
 
 ### `npm run start:dist`
 
@@ -139,9 +139,181 @@
 
 ![](images/stylelint_error.png)
 
+* [安装依赖](#安装依赖)
+
+项目中已经包含了React，ReactDOM和Redux等基础依赖库，如果你想安装其他的依赖库，请通过yarn（这是最新的JS包管理工具，不了解的可以在[yarn官网](https://yarnpkg.com)查看更多详细信息）进行安装，命令如下：  
+
+```
+yarn add <library-name> [--dev]
+```
+
+如果你想安装在devDependencies下就加上`--dev`参数。
+
+* [导入组件](#导入组件)
+
+项目使用[Babel](https://babeljs.io/)编译ES6语法，当然你还是可以使用`require()`和`module.exports`来导入和导出你的组件，但我们还是推荐你使用`import`和`export`。
+
+举个例子：
+
+### `Button.js`
+
+```js
+import React, { Component } from 'react';
+
+class Button extends Component {
+  render() {
+    // ...
+  }
+}
+
+export default Button; 
+```
+
+### `DangerButton.js`
 
 
+```js
+import React, { Component } from 'react';
+import Button from './Button'; // 导入另外Button.js文件里面的组件
 
+class DangerButton extends Component {
+  render() {
+    return <Button color="red" />;
+  }
+}
 
+export default DangerButton;
+```
 
+请注意[`expoart`和`export default`的区别](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)，这是一个容易搞错的地方。  
+
+当模块里面只需要导出一个东西的时候我们建议你使用默认导出比如`export default Button`，这样在导入的时候就可以直接这样导入`import Button from './Button`。  
+
+像这样`export Button`的名字导出在工具类中比较有用，这样可以导出多个方法。一个模块最多只能有一个默认的导出，但可以有多个名字导出。  
+
+下面的资料可以让你对ES6模块有更多的了解：  
+
+* [When to use the curly braces?](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)
+* [Exploring ES6: Modules](http://exploringjs.com/es6/ch_modules.html)
+* [Understanding ES6: Modules](https://leanpub.com/understandinges6/read#leanpub-auto-encapsulating-code-with-modules)
+
+## 添加样式
+
+工程使用[Webpack](https://webpack.github.io/)来处理所有资源文件，包括JS，CSS和图片等。Webpack提供了一种自定义的方式来扩展JS的`import`功能。为了表示一个JS文件依赖一个CSS文件，你需要**在JS文件中`import` CSS文件**。
+
+### Button.css
+
+```css
+.button {
+  padding: 20px;
+}
+```
+
+### Button.js
+
+```js
+import React, { Component } from 'react';
+import style from './Button.css'; // 告诉Webpack Button.js 使用了这些样式
+
+class Button extends Component {
+  render() {
+    // 你可以将CSS文件当成一个对象来使用，.button这个样式看成是对象的一个属性
+    return <div className={style.button} />;
+  }
+}
+```
+
+这一部分跟React没有任何关系，但大部分人使用这种方式来开发React应用，因为这样会感觉比较方便，你可以在[这篇文章](https://medium.com/seek-ui-engineering/block-element-modifying-your-javascript-components-d7f99fcab52b)中了解这种方式的好处。
+
+在开发环境，如果你的CSS文件修改了，应用进程会重新加载。在生产环境，所有的CSS文件最后会被打包成一个CSS文件。  
+
+## CSS预处理
+
+项目会自动压缩你的CSS文件，并通过[Autoprefixer](https://github.com/postcss/autoprefixer)自动为你的CSS属性添加各种浏览器前缀，所以你在写CSS只需要写原始的CSS属性就可以了。
+
+举个例子：
+
+```css
+.App {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+```
+
+会变成：
+
+```css
+.App {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+```
+
+项目目前不支持预处理器文件比如Less等，只支持CSS文件。
+
+## 添加图片和字体
+
+通过Webpack，使用图片和字体的方法跟使用CSS文件类似。
+
+你可以在JS文件中导入一个图片文件，这样会告诉Webpack在集成文件中要包含这个图片。和导入CSS文件不一样的地方是，导入一个图片或字体文件是返回一个字符串，这个字符串是这个文件的地址。
+
+举个例子：
+
+```js
+import React from 'react';
+import logo from './logo.png'; // 告诉Webpack这个JS文件使用这个图片
+
+console.log(logo); // /logo.84287d09.png
+
+function Header() {
+  // 在这里使用这个图片的路径
+  return <img src={logo} alt="Logo" />;
+}
+
+export default function Header;
+```
+
+这样可以确保Webpack在打包的时候将图片等引入的静态文件打包到构建文件，并提供一个正确的引用路径。
+
+在CSS文件中可以这样引入图片：
+
+```css
+.Logo {
+  background-image: url(./logo.png);
+}
+```
+
+Webpack会找到CSS中所有相关的引用，并将它们在打包文件中体现，如果你的图片路径有误或者路径上没有图片，你会看到一个编译错误。在生产环境Webpack会将图片名替换成为一个随机的名字，如果文件修改了，会变成另外一个随机名字，所以你不用担心缓存引起的问题。
+
+## 使用And Design
+
+项目中默认使用[Ant Design](https://ant.design/)（antd）组件框架，它是使用React编写的，可以让你很方便地使用一些通用的组件，比如Button, Modal等，省去了你编写一些通用组件的工作量。
+
+举个例子：
+
+```js
+import React from 'react';
+import { Button } from 'antd'; // 导入antd中的Button组件
+
+class YourButton extends Component {
+  render() {
+    return <Button type="primary">OK</Button>;
+  }
+}
+
+export default YourButton;
+```
+
+这只是一个简单的示例，在antd中有更多复杂的组件，如果要使用请仔细阅读该组件的说明文档，确定每个属性或者方式是使用正确的，如果在使用的过程中发现antd组件有什么问题，可以在其[issues区](https://github.com/ant-design/ant-design/issues)提问题，一般都能很快得到答复。
+
+项目默认使用的antd版本是v2.0.1，查阅相关文档时请注意antd的版本是否正确。
 
