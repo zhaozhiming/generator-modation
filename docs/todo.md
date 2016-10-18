@@ -1,7 +1,7 @@
 ## Todo List
 
 - [ ] add user guide
-- [ ] add http prox
+- [ ] add http proxy
 - [ ] add generator unit test
 - [ ] change mocha to jest
 - [x] change `npm start` to use `webpack devserver`

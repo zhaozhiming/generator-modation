@@ -1,6 +1,6 @@
 # 前端项目生成器
 
-## [使用指南](./docs/user_guide_zh.md)
+* [使用指南](./docs/user_guide_zh.md) —— 如何使用项目框架开发应用
 
 ## 技术栈
 
@@ -53,5 +53,3 @@ yo modation:unittest <component-name>
 ```
 
 ## [待完成功能](./docs/todo.md)
-
-## [目录结构](./docs/project_structure.md)

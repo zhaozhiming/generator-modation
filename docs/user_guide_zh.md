@@ -2,9 +2,10 @@
   
 ## 目录
   
+* [目录结构](#目录结构)
 * [操作命令](#操作命令)
     * [npm start](#npm-start)
-    * [npm run start:dist](#npm-run-start:dist)
+    * [npm run start:dist](#npm-run-startdist)
     * [npm test](#npm-test)
     * [npm run check](#npm-run-check)
     * [npm run dist](#npm-run-dist)
@@ -27,7 +28,64 @@
 * [项目部署](#项目部署)
     * [前端项目部署](#前端项目部署)
     * [后端项目部署](#后端项目部署)
-* [有什么遗漏？](#有什么遗漏？)
+
+
+## 目录结构
+
+```
+├── .babelrc
+├── .eslintrc
+├── package.json
+├── devServer.js
+├── docs
+│   └── README.md
+├── src
+│   ├── app.js
+│   ├── components
+│   │   └── Name
+│   │       ├── Name.js
+│   │       ├── index.js
+│   │       └── style.css
+│   ├── constants
+│   │   └── actionTypes.js
+│   ├── containers
+│   │   └── Main
+│   │       ├── Main.js
+│   │       ├── actions.js
+│   │       ├── components
+│   │       │   └── Message
+│   │       │       ├── Message.js
+│   │       │       ├── index.js
+│   │       │       └── style.css
+│   │       ├── index.js
+│   │       ├── reducer.js
+│   │       └── style.css
+│   ├── reducers.js
+│   ├── routes.js
+│   ├── server
+│   │   ├── README.md
+│   │   └── index.js
+│   ├── store.js
+│   ├── styles
+│   │   └── App.css
+│   └── utils
+│       └── README.md
+├── test
+│   ├── containers
+│   │   └── Main
+│   │       ├── components
+│   │       │   └── Message
+│   │       │       └── Message.test.js
+│   │       └── reducer.test.js
+│   ├── css-null-compiler.js
+│   ├── dom.js
+│   └── macha.opts
+├── validate-commit-msg.js
+└── webpack
+    ├── base.js
+    ├── client.js
+    └── server.js
+```
 
 ## 操作命令
 在项目中，你可以运行如下命令：  

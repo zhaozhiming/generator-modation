@@ -1,6 +1,6 @@
 # Frontend Project Generator ([中文版](./README_zh.md))
 
-## [User Guide](./docs/user_guide.md)
+* [User Guide](./docs/user_guide.md) - How to develop apps bootstrapped with generator-modation
 
 ## Technology Stack
 
@@ -53,5 +53,3 @@ yo modation:unittest <component-name>
 ```
 
 ## [Todo List](./docs/todo.md)
-
-## [Project Structure](./docs/project_structure.md)
