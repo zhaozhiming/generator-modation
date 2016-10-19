@@ -2,7 +2,7 @@
   
 ## 目录
   
-* [目录结构](#目录结构)
+* [项目结构](#项目结构)
 * [操作命令](#操作命令)
     * [npm start](#npm-start)
     * [npm run start:dist](#npm-run-startdist)
@@ -26,14 +26,9 @@
 * [发送请求](#发送请求)
 * [集成服务端](#集成服务端)
 * [编写测试](#编写测试)
-    * [编写reducer测试](#编写reducer测试)
-    * [编写组件测试](#编写组件测试)
-* [项目部署](#项目部署)
-    * [前端项目部署](#前端项目部署)
-    * [后端项目部署](#后端项目部署)
 
 
-## 目录结构
+## 项目结构
 
 ```
 ├── .babelrc
@@ -99,11 +94,12 @@
 * webpack: Webpack配置文件的目录，客户端和服务端的配置是分不同文件配置的
 
 ## 操作命令
-在项目中，你可以运行如下命令：  
+
+在项目中，你可以运行如下命令：
 
 ### `npm start`
 
-在开发环境运行项目，启动成功后，在浏览器打开http://localhost:8000可以访问。  
+在开发环境运行项目，启动成功后，在浏览器打开`http://localhost:8000`可以访问。
 
 当你修改项目中的文件并保存后，应用进程会重新加载，如果有错误会在终端显示。
 
@@ -113,7 +109,7 @@
 
 ### `npm test`
 
-运行项目中的测试，你可以查看[编写测试](#编写测试)章节了解如何编写测试用例。  
+运行项目中的测试，你可以查看[编写测试](#编写测试)章节了解如何编写测试用例。
 
 ### `npm run check`
 
@@ -125,9 +121,9 @@
 
 ## 静态代码检查
 
-项目中集成了一些JS和CSS编码规范，这些规范是业界推崇比较好的规范，这样可以统一开发团队的编码规范，避免杂乱无章的代码。  
+项目中集成了一些JS和CSS编码规范，这些规范是业界推崇比较好的规范，这样可以统一开发团队的编码规范，避免杂乱无章的代码。
 
-如果你的代码不符合这些规范，在终端会提示你哪些文件有哪些错误，如下图所示：  
+如果你的代码不符合这些规范，在终端会提示你哪些文件有哪些错误，如下图所示：
 
 ![](images/eslint_error.png)
 
@@ -144,7 +140,7 @@
 
 ### CSS代码检查
 
-项目中使用[stylelint](https://github.com/stylelint/stylelint)来做css代码的规范检查，stylelint的规则文件是项目根目录下的`.stylelintrc`文件，你可以修改里面的规则来让其更适合你的开发团队。  
+项目中使用[stylelint](https://github.com/stylelint/stylelint)来做css代码的规范检查，stylelint的规则文件是项目根目录下的`.stylelintrc`文件，你可以修改里面的规则来让其更适合你的开发团队。
 
 同样的，如果你对提示的错误信息不了解，也可以通过Google搜索`stylelint 规则名`来了解规则的详细信息，和eslint一样，每一行错误信息的最后会显示规则名称：
 
@@ -308,6 +304,62 @@ function todoApp(state = initialState, action) {
 
 * [Redux 文档](http://redux.js.org/)
 * [Redux 视频](https://egghead.io/series/getting-started-with-redux)
+
+## 编写路由
+
+项目使用了[`react-router`](https://github.com/ReactTraining/react-router)来控制前端页面路由。
+
+现在项目中的示例代码只配置一个根路由`/`，这个路由指向了`Main`组件，代码示例如下：
+
+### routes.js(before)
+
+```js
+import Main from 'containers/Main';
+
+export function createRoutes() {
+  return {
+    path: '/',
+    component: Main,
+  };
+}
+```
+
+如果要配置更多的路由，首先需要修改`Main`组件，将在其render方法中添加`this.props.children`，表示组件会展示其子路由组件的内容。然后在`routes.js`里面添加子路由，代码示例如下：
+
+### Main.js
+
+```js
+class Main extends Component {
+  render() {
+    return (
+      <div>
+        {this.props.children}
+      </div>
+    );
+  }
+}
+
+```
+
+### routes.js(after)
+
+```js
+export function createRoutes() {
+  return {
+    path: '/',
+    component: Main,
+    childRoutes: [
+        { path: 'about', component: About }, // 访问about可以看到About组件
+        { path: 'inbox', component: Inbox }, // 访问inbox可以看到Inbox组件
+    ],
+  };
+}
+```
+
+更多react-router的详细信息可以参考以下资料：
+
+* [react-router](https://github.com/ReactTraining/react-router)
+* [react-router中文文档](https://react-guide.github.io/react-router-cn)
 
 ## 安装依赖
 
@@ -486,4 +538,113 @@ export default YourButton;
 这只是一个简单的示例，在antd中有更多复杂的组件，如果要使用请仔细阅读该组件的说明文档，确定每个属性或者方法是使用正确的，如果在使用的过程中发现antd组件有什么问题，可以在其[issues区](https://github.com/ant-design/ant-design/issues)提问题，一般都能很快得到答复。
 
 项目默认使用的antd版本是v2.0.1，查阅相关文档时请注意antd的版本是否正确。
+
+## 发送请求
+
+项目中使用`fetch`方法来发送http请求从服务器获取数据，一般我们建议在action方法里面来做发送请求的操作。
+
+在项目中可以使用ES7的一些实验性语法`async\await`，使用它们可以避免写回调方法，使得我们的代码更加直观易懂。
+
+举个例子：
+
+```js
+export async function randomName(num) {
+  const response = await fetch('/api/name/random', {
+    method: 'post',
+    body: JSON.stringify({
+      num,
+    }),
+  });
+  const result = await response.json();
+  return {
+    type: at.CHANGE_NAME,
+    name: result.name ,
+  };
+}
+```
+
+我们通过`fetch`请求后台服务器的api获取到json数据，这里分成2个部分，首先获取response，然后再从response中获取json数据，最后将结果封装在action对象中返回。
+
+更多参考资料：
+
+* [这个API很迷人](http://www.w3ctech.com/topic/854)
+* [async 函数的含义和用法](http://www.ruanyifeng.com/blog/2015/05/async.html)
+
+## 集成服务端
+
+使用generator创建项目可以选择是否需要服务端，如果选择需要，项目框架中会添加服务端的代码。
+
+项目服务端使用[`hapi.js`](http://hapijs.com/)作为后端服务器的框架，使用该框架可以很方便地编写后端API。
+
+举个例子：
+
+### index.js
+
+```js
+import name from './handlers/name';
+
+const server = new Hapi.Server();
+server.route([name]);
+```
+
+### name.js
+
+```js
+export default {
+  method: ['POST'],
+  path: '/api/name/random',
+
+  config: {
+    handler(request, reply) {
+      const { num } = JSON.parse(request.payload);
+      const randomNames = [];
+      for (let i = 0; i < num; i++) {
+        randomNames.push(getRandomName());
+      }
+      return reply({
+        name: randomNames.join(' '),
+      });
+    },
+  },
+};
+```
+
+首先在hapi的服务`server`中通过`route`方法添加`name`这个路由，这个路由其实是一个JS对象，里面有以下基本属性：
+
+* method: 定义请求的方法，比如`GET`，`PUST`等
+* path: 定义路由的url路径
+* config: 具体处理逻辑，通过`request`参数可以获取请求的参数，然后通过`reply`参数可以返回response结果
+
+## 编写测试
+
+项目中使用[`Mocha`](https://mochajs.org/)来做单元测试，不管是前端代码还是后端的，都可以使用该测试框架写测试用例。
+
+在项目根目录下执行`yarn test`命令会运行所有测试用例，在git提交时也会执行该操作，如果测试用例有失败的，则不能提交成功。
+
+项目中的`test`目录是放置测试文件的地方，我们建议每个测试文件需和功能文件一一对应，包括文件的路径。比如有个功能文件，文件路径是`src/components/Header/Header.js`，那么测试文件的路径就应该是`test/components/Header/Header.test.js`，每个测试文件需要加上`.test`后缀，这样测试框架才能找到并执行它们。
+
+测试React组件我们需要使用[`Enzyme`](https://github.com/airbnb/enzyme)这个工具包，它是一个方便你测试React组件的工具，它提供了一系列方便的API，让你可以在测试代码中渲染组件，并通过选择器找到你要验证的页面元素进行结果校验，还可以方便地获取组件中的`props`和`state`数据来测试结果。
+
+以测试React组件为例：
+
+### Message.test.js
+
+```js
+import React from 'react';
+import { shallow } from 'enzyme';
+import { expect } from 'chai';
+import Message from 'containers/Main/components/Message';
+
+describe('Message component', () => {
+  it('should render correctly', () => {
+    const wrap = shallow(<Message {...props} />);
+    expect(wrap.find('span').length).to.be.equal(1);
+    expect(wrap.find('span').text()).to.be.equal('Message: foo');
+  });
+});
+```
+
+通过调用`enzyem`的`shallow`方法可以浅渲染出React组件，并通过`find`方法找到其中的html元素，验证其个数是否正确，渲染出的内容是否正确等。
+
+通过`yo modation:unittest <component-name>`命令可以让你快速创建一个测试文件，首先要进入到你要创建测试文件的文件夹，然后执行该命令。
 

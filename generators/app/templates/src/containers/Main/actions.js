@@ -16,15 +16,15 @@ export function changeMessage(message) {
 
 <% if (serverSide) { -%>
 export function randomName(num) {
-  return dispatch => (
-    fetch('/api/name/random', {
+  return async (dispatch) => {
+    const response = await fetch('/api/name/random', {
       method: 'post',
       body: JSON.stringify({
         num,
       }),
-    })
-    .then(response => response.json())
-    .then(json => dispatch(changeName(json.name)))
-  );
+    });
+    const result = await response.json();
+    return dispatch(changeName(result.name));
+  };
 }
 <% } -%>
