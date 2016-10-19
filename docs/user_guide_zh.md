@@ -12,14 +12,17 @@
 * [静态代码检查](#静态代码检查)
     * [JS代码检查](#JS代码检查)
     * [CSS代码检查](#CSS代码检查)
+* [提交信息校验](#提交信息校验)
+* [编写组件](#编写组件)
+* [编写action](#编写action)
+* [编写reducer](#编写reducer)
+* [编写路由](#编写路由)
 * [安装依赖](#安装依赖)
 * [导入组件](#导入组件)
 * [添加样式](#添加样式)
 * [CSS预处理](#CSS预处理)
 * [添加图片和字体](#添加图片和字体)
 * [使用And Design](#使用and-design)
-* [编写action](#编写action)
-* [编写reducer](#编写reducer)
 * [发送请求](#发送请求)
 * [集成服务端](#集成服务端)
 * [编写测试](#编写测试)
@@ -87,6 +90,14 @@
     └── server.js
 ```
 
+* docs: 放置项目文档
+* src: 源文件目录
+    * components: 放置公共组件
+    * constants: 放置常量文件
+    * containers: 这是放置容器型组件的地方，容器型组件包含了自己的action,reducer和router，里面还可以有自己的子组件
+* test: 测试文件目录，放置测试用例
+* webpack: Webpack配置文件的目录，客户端和服务端的配置是分不同文件配置的
+
 ## 操作命令
 在项目中，你可以运行如下命令：  
 
@@ -139,7 +150,166 @@
 
 ![](images/stylelint_error.png)
 
-* [安装依赖](#安装依赖)
+## 提交信息校验
+
+项目中集成git提交信息的校验，我们希望能从代码的提交记录中知道修改的主要内容，比如是修改哪个模块的代码，是新功能的添加，还是修复缺陷，或者是添加测试等。
+
+提交信息的格式为: `<type>(<scope>): <subject>`，其中type和subject是必须的，scope是可选的。
+
+type主要有以下几种类型：
+
+* feat：新功能（feature）
+* fix：修补bug
+* docs：文档（documentation）
+* style： 格式（不影响代码运行的变动）
+* refactor：重构（即不是新增功能，也不是修改bug的代码变动）
+* test：增加测试
+* chore：构建过程或辅助工具的变动
+
+scope用于说明 commit 影响的范围，比如数据层、控制层、视图层等等，视项目不同而不同。
+
+subject是 commit 目的的简短描述，不超过50个字符。
+
+更详细的参考资料可以看[这里](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)。
+
+## 编写组件
+
+项目使用[React](https://facebook.github.io/react/)来做前端页面渲染，React是最近比较流行的一个页面渲染框架，通过React可以很方便进行页面组件化开发，并最大化的复用页面组件，避免重复代码，提高代码可维护性。
+
+这是一个简单的组件：
+
+```js
+import React, { Component, PropTypes } from 'react';
+
+class Button extends Component {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+  };
+
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      value: '',
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value});
+  }
+
+  render() {
+    return (
+      <div>
+        <span>{this.props.name}</span>
+        <input value={this.state.value} onChange={this.handleChange} />
+      </div>
+    );
+  }
+}
+
+export default Button;
+```
+
+每个组件使用ES6的class来封装，继承react的`Component`对象，`render`方法是每个组件必须存在的方法，渲染的页面写在这里面。
+
+在组件的开头部分是props对象的校验，`name: PropTypes.string.isRequired`是指name这个属性是字符串（`string`）类型，而且是必须的（`isRequired`），如果在引用这个组件时没有传递name属性，编译将会报错，如果传给name的值不是string类型的，编译会给一个警告。
+
+`constructor`是类的构造器，里面定义了组件的state这个对象各个属性的初始值，并将`handleChange`方法绑定到了这个组件对象里面来。**请注意，并不是所有方法都需要`bind(this)`，如果方法里面用到了`this`这个关键字才需要绑定。**
+
+`handleChange`方法可以改变组件的内部数据，通过调用`setState`方法来改变，传入的参数是一个包含了state属性的对象。请注意，不能使用`this.state.value = 'foo'`这种方式给state属性赋值，一般是通过`setState`方法来改变state数据。
+
+最后是`render`方法，一般是返回页面元素，可以通过JS语法根据state或props对象的值来生成动态的页面。请注意，`render`方法返回的对象必须只有一个根元素，比如是`<div></div>`，多于一个都会编译报错，比如这种是错误的：`<div></div><div></div>`。
+
+更多React的详细信息可以参考以下资料：
+
+* [React官网](https://facebook.github.io/react/)
+* [React Pattern](http://reactpatterns.com/)
+
+## 编写action
+
+项目使用了[Redux](https://github.com/reactjs/redux)来做组件的数据状态管理，action是应用发送数据到Redux仓库的一个信息载体，它们是仓库的原始信息。
+
+下面是一个action示例：
+
+### actionTypes.js
+
+```js
+export const ADD_TODO = 'ADD_TODO';
+```
+
+### action.js
+
+```js
+import { ADD_TODO } from '../actionTypes';
+
+function addTodo(text) {
+  return {
+    type: ADD_TODO,
+    text,
+  };
+}
+```
+
+首先我们定义一个常量来表示action的类型，一般这些常量会有单独一个文件（比如`actionTypes.js`）来存放。
+
+然后定义一个方法返回一个纯JS对象，这个对象必须包含`type`属性，其它属性都是可选的。type属性的类型是字符串，这个type会和reducers里面的type对应起来，从而建立两者关联。
+
+通常建议action返回的对象只包含一些必要的数据，并且能小尽量的小，不要包含太多属性，也不要在某个属性里面赋值一个很大的对象。
+
+## 编写reducer
+
+如果action表示某些事情已经发生了，那么reducer就表示如何响应这些事情，如何根据action返回的数据更新Redux仓库的内容。
+
+在Redux中，应用的所有数据都存放在一个单独的对象里面，在写Redux代码前最好把这个概念深印在你的脑海里。
+
+reducer是一个纯函数，接收前状态和action为参数，返回一个新的状态。
+
+```js
+(previousState, action) => newState
+```
+
+在reducer方法里面建议不要做以下事情：
+
+* 修改方法参数
+* 执行性能消耗大的操作，比如调用后端API或者转换路由
+* 调用一些不纯的函数，比如`Date.now()`或`Math.random()`
+
+下面是一个reducer的例子：
+
+```js
+import { ADD_TODO } from '../actionTypes';
+import immutable from 'immutable';
+
+const initialState = immutable.fromJS({
+  todos: [],
+});
+
+function todoApp(state = initialState, action) {
+  switch (action.type) {
+    case ADD_TODO:
+      return state.get('todos', (todos) => todos.push({
+        text: action.text,
+        completed: false,
+      }));
+    default:
+      return state;
+  }
+}
+```
+
+首先我们引用了[`immutable`](http://facebook.github.io/immutable-js/docs)这个第三方工具库，它的主要作用是不改变原来的对象，而是在每次操作后返回一个新的对象。为什么要使用`immutable`呢？这是因为Redux仓库里面的数据都是不可变的，如果需要修改里面的数据，需要返回一个全新的对象来覆盖原来的对象，所以`immutable`非常合适在Redux项目中使用。更多`immutable`的用法可以参考其官网的文档。
+
+然后我们构造了一个状态对象的初始值，这个是reducer方法第一次被调用时会使用的初始值，在reducer方法参数里面被这样用到`state = initialState`，如果传入的state参数为空，则使用`initialState`来为参数`state`赋值。
+
+在reducer主体方法里面，我们根据action的类型来判断该走哪种处理逻辑，比如类型如果是`ADD_TODO`的话就在原来的`todos`集合里面添加一个新的todo对象，如果所有action类型都不匹配，就原封不动地返回原来的state对象。
+
+更多Redux的详细信息可以参考以下资料：
+
+* [Redux 文档](http://redux.js.org/)
+* [Redux 视频](https://egghead.io/series/getting-started-with-redux)
+
+## 安装依赖
 
 项目中已经包含了React，ReactDOM和Redux等基础依赖库，如果你想安装其他的依赖库，请通过yarn（这是最新的JS包管理工具，不了解的可以在[yarn官网](https://yarnpkg.com)查看更多详细信息）进行安装，命令如下：  
 
@@ -149,7 +319,7 @@ yarn add <library-name> [--dev]
 
 如果你想安装在devDependencies下就加上`--dev`参数。
 
-* [导入组件](#导入组件)
+## 导入组件
 
 项目使用[Babel](https://babeljs.io/)编译ES6语法，当然你还是可以使用`require()`和`module.exports`来导入和导出你的组件，但我们还是推荐你使用`import`和`export`。
 
@@ -313,7 +483,7 @@ class YourButton extends Component {
 export default YourButton;
 ```
 
-这只是一个简单的示例，在antd中有更多复杂的组件，如果要使用请仔细阅读该组件的说明文档，确定每个属性或者方式是使用正确的，如果在使用的过程中发现antd组件有什么问题，可以在其[issues区](https://github.com/ant-design/ant-design/issues)提问题，一般都能很快得到答复。
+这只是一个简单的示例，在antd中有更多复杂的组件，如果要使用请仔细阅读该组件的说明文档，确定每个属性或者方法是使用正确的，如果在使用的过程中发现antd组件有什么问题，可以在其[issues区](https://github.com/ant-design/ant-design/issues)提问题，一般都能很快得到答复。
 
 项目默认使用的antd版本是v2.0.1，查阅相关文档时请注意antd的版本是否正确。
 
