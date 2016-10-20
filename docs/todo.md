@@ -1,9 +1,9 @@
 ## Todo List
 
-- [ ] add user guide
 - [ ] add http proxy
 - [ ] add generator unit test
 - [ ] change mocha to jest
+- [x] add user guide
 - [x] change `npm start` to use `webpack devserver`
 - [x] make server side can choose to config by user
 - [x] sub-generator container should put in src/containers
