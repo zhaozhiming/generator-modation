@@ -13,9 +13,10 @@
     * [JS代码检查](#JS代码检查)
     * [CSS代码检查](#CSS代码检查)
 * [提交信息校验](#提交信息校验)
-* [编写组件](#编写组件)
-* [编写action](#编写action)
-* [编写reducer](#编写reducer)
+* [开发一个小功能](#开发一个小功能)
+    * [编写组件](#编写组件)
+    * [编写action](#编写action)
+    * [编写reducer](#编写reducer)
 * [编写路由](#编写路由)
 * [安装依赖](#安装依赖)
 * [导入组件](#导入组件)
@@ -168,18 +169,22 @@ subject是 commit 目的的简短描述，不超过50个字符。
 
 更详细的参考资料可以看[这里](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)。
 
+## 开发一个小功能
+
+假设我们需要开发小功能——添加待办事项，下面分别以开发React组件，Redux action方法和reducer方法为例，介绍一下如何开发这个功能。
+
 ## 编写组件
 
 项目使用[React](https://facebook.github.io/react/)来做前端页面渲染，React是最近比较流行的一个页面渲染框架，通过React可以很方便进行页面组件化开发，并最大化的复用页面组件，避免重复代码，提高代码可维护性。
 
-这是一个简单的组件：
+这是一个添加待办事项的的React组件：
 
 ```js
 import React, { Component, PropTypes } from 'react';
 
-class Button extends Component {
+class TodoInput extends Component {
   static propTypes = {
-    name: PropTypes.string.isRequired,
+    actions: PropTypes.object.isRequired,
   };
 
   constructor(props, context) {
@@ -191,25 +196,26 @@ class Button extends Component {
   }
 
   handleChange(event) {
-    this.setState({ value: event.target.value});
+    const text = event.target.value;
+    this.setState({ value: text});
+    this.props.actions.addTodo(text);
   }
 
   render() {
     return (
       <div>
-        <span>{this.props.name}</span>
         <input value={this.state.value} onChange={this.handleChange} />
       </div>
     );
   }
 }
 
-export default Button;
+export default TodoInput;
 ```
 
 每个组件使用ES6的class来封装，继承react的`Component`对象，`render`方法是每个组件必须存在的方法，渲染的页面写在这里面。
 
-在组件的开头部分是props对象的校验，`name: PropTypes.string.isRequired`是指name这个属性是字符串（`string`）类型，而且是必须的（`isRequired`），如果在引用这个组件时没有传递name属性，编译将会报错，如果传给name的值不是string类型的，编译会给一个警告。
+在组件的开头部分是props对象的校验，`actions: PropTypes.object.isRequired`是指actions这个属性是对象（`object`）类型，而且是必须的（`isRequired`），如果在引用这个组件时没有传递actions属性，编译将会报错，如果传给actions的值不是object类型的，编译会给一个警告。
 
 `constructor`是类的构造器，里面定义了组件的state这个对象各个属性的初始值，并将`handleChange`方法绑定到了这个组件对象里面来。**请注意，并不是所有方法都需要`bind(this)`，如果方法里面用到了`this`这个关键字才需要绑定。**
 
@@ -226,7 +232,7 @@ export default Button;
 
 项目使用了[Redux](https://github.com/reactjs/redux)来做组件的数据状态管理，action是应用发送数据到Redux仓库的一个信息载体，它们是仓库的原始信息。
 
-下面是一个action示例：
+前面的`TodoInput`组件调用了`actions.addTodo()`方法，传入了输入框中的值，下面是这个action示例：
 
 ### actionTypes.js
 
@@ -407,7 +413,7 @@ class DangerButton extends Component {
 export default DangerButton;
 ```
 
-请注意[`expoart`和`export default`的区别](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)，这是一个容易搞错的地方。  
+请注意[`export`和`export default`的区别](http://stackoverflow.com/questions/36795819/react-native-es-6-when-should-i-use-curly-braces-for-import/36796281#36796281)，这是一个容易搞错的地方。  
 
 当模块里面只需要导出一个东西的时候我们建议你使用默认导出比如`export default Button`，这样在导入的时候就可以直接这样导入`import Button from './Button`。  
 
