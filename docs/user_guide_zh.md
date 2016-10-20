@@ -22,7 +22,7 @@
 * [添加样式](#添加样式)
 * [CSS预处理](#CSS预处理)
 * [添加图片和字体](#添加图片和字体)
-* [使用And Design](#使用and-design)
+* [使用Ant Design](#使用ant-design)
 * [发送请求](#发送请求)
 * [集成服务端](#集成服务端)
 * [编写测试](#编写测试)
@@ -516,7 +516,7 @@ export default function Header;
 
 Webpack会找到CSS中所有相关的引用，并将它们在打包文件中体现，如果你的图片路径有误或者路径上没有图片，你会看到一个编译错误。在生产环境Webpack会将图片名替换成为一个随机的名字，如果文件修改了，会变成另外一个随机名字，所以你不用担心缓存引起的问题。
 
-## 使用And Design
+## 使用Ant Design
 
 项目中默认使用[Ant Design](https://ant.design/)（antd）组件框架，它是使用React编写的，可以让你很方便地使用一些通用的组件，比如Button, Modal等，省去了你编写一些通用组件的工作量。
 
