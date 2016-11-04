@@ -1,6 +1,6 @@
 {
   "name": "generator-modation",
-  "version": "0.5.16",
+  "version": "0.5.17",
   "description": "a frontend project generator with React, Redux and Webpack etc.",
   "license": "MIT",
   "main": "generators/app/index.js",
