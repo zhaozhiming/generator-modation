@@ -13,8 +13,8 @@
 
 ## 用法
 
-* yarn global add yo
-* yarn global add generator-modation
+* yarn global add yo --prefix /usr/local
+* yarn add global generator-modation
 * mkdir myapp && cd myapp
 * yo modation
 * yarn install
